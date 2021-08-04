@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace JurassicPark
 {
-    class Dinosaurs
+    class Dinosaur
     {
         public string Name { get; set; }
         public string DietType { get; set; }
