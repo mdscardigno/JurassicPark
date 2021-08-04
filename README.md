@@ -1,8 +1,10 @@
 # JurassicPark
 
 <!--
-
 #PEDAC
+
+CRUDE Create, Read, Update, and Edit
+Application that does what?
 
 ##P: Restating Problem
 -[x]Build Dinosaur class with properties Name, DietType, AcquisitionDate, Weight and EnclosureNumber.
@@ -23,7 +25,19 @@
     **This will stop the program
 -[]
 ##E: Example
+Jurassic Park Dino Interface
+-Add new dino
+  What is the name of the dino?
+  How much does it weight?
+  When was it purchased/donated?
+  Which enclosure is the dino going to be placed at within the zoo/park?
+-Edit/Update dino
+  What would you like to change? (N)ame, (W)eight, (AD)cquicitionDate, (E)nclosureNumber or (D)escription.
+  -Remove dino from the inventory of dinos. Specify which enclosure number will be available for any new dinos to be added in the future.
+-Quit
+
 Dinosaur List
+List<Dinosaur> to keep track of the dinosaurs
 A- Herbivorous dinosaurs
   1. Aardonyx.
   2. Achelousaurus.
@@ -43,7 +57,9 @@ B- Abelisaurus.
   6. Alioramus.
   7. Allosaurus.
 ##D: Data
-
+  >Collection
+  >List
+  >Description about each dinosaur
 
 ##A: Algorithm
 

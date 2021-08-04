@@ -10,6 +10,12 @@ namespace JurassicPark
         public DateTime AcquisitionDate { get; set; }
         public int Weight { get; set; }
         public int EnclosureNumber { get; set; }
+        public string DinoDescription()
+        {
+            //print out a description of the dinosaur to include all the properties. 
+            //Create an output format of your choosing. Feel free to be creative.
+            return Name + DietType + AcquisitionDate + Weight + EnclosureNumber;
+        }
     }
     class Program
     {
