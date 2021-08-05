@@ -42,18 +42,18 @@ namespace JurassicPark
                 return 0;
             }
         }
-        public string DinoDescription()
-        {
-            string description = Name + DietType + AcquisitionDate + Weight + EnclosureNumber;
-            //print out a description of the dinosaur to include all the properties. 
-            //Create an output format of your choosing. Feel free to be creative.
-            return description;
-        }
+        // public string DinoDescription()
+        // {
+        //     // string description = Name + DietType + AcquisitionDate + Weight + EnclosureNumber;
+        //     //print out a description of the dinosaur to include all the properties. 
+        //     //Create an output format of your choosing. Feel free to be creative.
+        //     // return description;
+        // }
         static void Main(string[] args)
         {
             var dinosaurs = new List<Dinosaur>();
             var dinosour = new Dinosaur();
-            var dinoDescription = DinoDescription();
+            // var dinoDescription = DinoDescription();
 
             DisplayGreeting();
 
