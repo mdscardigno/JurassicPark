@@ -109,9 +109,17 @@ namespace JurassicPark
                 else
                 if (option == "T")
                 {
-                    //find the dino and its enclosure number
-                    //if enclosure number exists, display and ask the user to comfirm 
-                    //if he/she wants to transfer the dinosaur to that specified enclosure number
+                    var nameOfDinoToTransfer = PromptForString("What's the dino's name you looking for? ");
+                    //find the dino
+                    Dinosaur foundDino = dinosaurs.FirstOrDefault(dinosaur => dinosaur.Name == nameOfDinoToTransfer);
+                    //find the enclosure number
+
+                    //if enclosure number exists, display and ask the user to comfirm if the do want to transfer the dino
+
+                    //if yes
+                    //  continue
+                    //if no
+                    //  do nothing
                 }
                 else
                 if (option == "Q")
