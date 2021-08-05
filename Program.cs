@@ -11,13 +11,6 @@ namespace JurassicPark
         public DateTime AcquisitionDate { get; set; }
         public int Weight { get; set; }
         public int EnclosureNumber { get; set; }
-        public string DinoDescription()
-        {
-            string description = Name + DietType + AcquisitionDate + Weight + EnclosureNumber;
-            //print out a description of the dinosaur to include all the properties. 
-            //Create an output format of your choosing. Feel free to be creative.
-            return description;
-        }
     }
     class Program
     {
@@ -45,13 +38,22 @@ namespace JurassicPark
             }
             else
             {
-                Console.WriteLine("Sorry, that isn't a valid input, I'm using 0 as your answer.");
+                Console.WriteLine("Sorry, but your input is invalid. Please try again.");
                 return 0;
             }
+        }
+        public string DinoDescription()
+        {
+            string description = Name + DietType + AcquisitionDate + Weight + EnclosureNumber;
+            //print out a description of the dinosaur to include all the properties. 
+            //Create an output format of your choosing. Feel free to be creative.
+            return description;
         }
         static void Main(string[] args)
         {
             var dinosaurs = new List<Dinosaur>();
+            var dinosour = new Dinosaur();
+            var dinoDescription = DinoDescription();
 
             DisplayGreeting();
 
