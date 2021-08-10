@@ -42,7 +42,7 @@ namespace JurassicPark
                 return 0;
             }
         }
-        // public string DinoDescription()
+        // public string DinoDescription()//start of method
         // {
         //     // string description = Name + DietType + AcquisitionDate + Weight + EnclosureNumber;
         //     //print out a description of the dinosaur to include all the properties. 
@@ -51,6 +51,25 @@ namespace JurassicPark
         // }
         static void Main(string[] args)
         {
+            Console.Title = "ASCII Art";
+            string title = @"
+@@@QORBQ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Bmoy3hgQ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@Q. ',-;N88NB@@@QN&&Q&&&BQQ@@@@@@Q888NQ@@@@QOQ@@@@QbQ@@Q&BQ@@@@@QQ@@@@@4 `;''::+X@@@@QN888NQ@@B000g&Q@@@0R%WQ@Q&@@@@
+@@@Q, +^ ,4 `~ D@@~`- 1 ~'',,'lQ@@Q''~,,'Q@@j.'`,FQF.'.,1, '-Q@Q3,-'=%@@@D `? ,''r''p@Q'-,', u@@;'^',_'r%@;`~ }@| ,_}@
+@@@@; ;^ ~8-'> U@@;-~-j = ;~`~:'b@m ;  ~ XQ= ;~ =U; ;~ =K= +:QQ;`;~'LH@@@&``= \Q? L.'&X ^` ~'r@@;~r;r`~;`j*`> jj +,,R@
+@@@@| ~^ ^Q:`+ X@@;.~:G r S@j >,'&^,,~L`'*d `> )@X '= F@@l ;;Q:'+`}@@@@@@Q' ^ z@@~~* C+'~,J`~`8@;,;z@k ^^`^ + '`^'?Q@@
+@@@@J :^ +@;`^ $@@^`~;X ^ VQ= *-;H`~ jN.;'Bl ;,-XQ? ;',R@x ;;j +`i@@@@@@@Q' ^ v@Q:;r i-;`1Q,~.F@;,;lQ+ =,~L = `>`LQ0bD
+@@@@y '^ =@;`; R@@;`:^U ; -`,;~sQ?:~'RB;;-j@R,'^ ^QU.,~ 11 ~;l ^ }@@@@@@@Q' + LX:-> :?'; m0>`;,Q;~;``,;_tQt |~:,~'R@@@
+@@@@V .; *@; ;`&@@~`:^U *,''*';QW.?~''''>^;Q@m |' k@i | .* ;;P ;,,Q@@@@@@Q' =  .~~ ;O,?;'''',L`j;~i''r;-N@s c`~',;'K@@
+@@@@} .^ *@; ^`_r+'~~^X r ;^ +`l|,; ;>+~ ? aV'~; )gi.+,`wL`^,Ql ~;-vN@@@@&``c'''~zN@F'* ;\i*`~~,,;r,t ^,;Qz | 1B:'>`s@
+X*L?- ~; |@V'`:~,'-`,;X + >Q;._  +.:Q@@Q |'  ,,.oj` ~`~R@r ;-Q@j.-;. ?Q@@R .? ;Q@@@Q~r,`%@@@;`=  ;;~QF`; )L ; v@W''~`V
+y `::~- `O@@@QPi|kv*lU8iLLP@QJzFiiiU@@@Q^=+*p1CQ@@QhLA@@@jclFQ@@@pizN@@@@X .^ +@@@@Bzll3@@@@S*|?L11a@@GL}KK}CCO@@B{DQ@
+0=;~~~;l8@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@b+=>>y@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                               
+                                                                 ";
+
+            Console.WriteLine(title);
+            Console.Read();
+            Console.Clear();
             var dinosaurs = new List<Dinosaur>();
             var dinosour = new Dinosaur();
             // var dinoDescription = DinoDescription();
