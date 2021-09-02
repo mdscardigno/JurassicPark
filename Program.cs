@@ -17,6 +17,8 @@ namespace JurassicPark
             DinosaurDatabase.Add("herbivore", "Sarah", 12500, 3);
             DinosaurDatabase.Add("herbivore", "Buttons", 2, 100);
 
+            DinosaurDatabase.Remove("Godzilla");
+
             DinosaurDatabase.ViewDinos("Name");
             DinosaurDatabase.ViewDinos("EnclosureNumber");
 
@@ -71,6 +73,16 @@ namespace JurassicPark
             Dinosaur newDino = new Dinosaur(diet, name, weight, enclosureNumber);
             dinos.Add(newDino);
             return newDino;
+        }
+        public static Dinosaur Remove(string name)
+        {
+            Dinosaur dinoToRemove = dinos.FirstOrDefault(dino => dino.Name == name);
+            if (dinoToRemove != null)
+            {
+                dinos.Remove(dinoToRemove);
+                Console.WriteLine("Dino removed!");
+            }
+            return dinoToRemove;
         }
     }
 }
