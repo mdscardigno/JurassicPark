@@ -4,166 +4,73 @@ using System.Linq;
 
 namespace JurassicPark
 {
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // DisplayGreeting();
+            Console.WriteLine("Welcome to Jurassic Park!");
+            //Test Code
+            DinosaurDatabase.Add("carnivore", "Godzilla", 328000000, 1);
+            DinosaurDatabase.Add("carnivore", "T-Rex", 13000, 1);
+            DinosaurDatabase.Add("carnivore", "Steve", 8000, 2);
+            DinosaurDatabase.Add("herbivore", "Sarah", 12500, 3);
+            DinosaurDatabase.Add("herbivore", "Buttons", 2, 100);
+
+            DinosaurDatabase.ViewDinos("Name");
+            DinosaurDatabase.ViewDinos("EnclosureNumber");
+
+        }
+    }
     class Dinosaur
     {
         public string Name { get; set; }
-        public string DietType { get; set; }
-        public DateTime AcquisitionDate { get; set; }
-        public int Weight { get; set; }
-        public int EnclosureNumber { get; set; }
+        public string DietType { get; set; }//This will be "carnivore" or "herbivore"
+        public DateTime AcquisitionDate { get; set; }//This will default to the current time when the dinosaur is created
+        public int Weight { get; set; }//How heavy the dinosaur is in pounds.
+        public int EnclosureNumber { get; set; }//the number of the enclosure the dinosaur is in
+        //building a constructor
+        public Dinosaur(string diet, string name, int weight, int enclosureNumber)
+        {
+            DietType = diet;
+            Name = name;
+            AcquisitionDate = DateTime.Now;
+            Weight = weight;
+            EnclosureNumber = enclosureNumber;
+        }
+        public void Description()
+        {
+            Console.WriteLine($"{Name} is a {DietType} that was acquired {AcquisitionDate} and weighs {Weight} pounds and lives in pen number {EnclosureNumber}!");
+        }
     }
-    class Program
+    static class DinosaurDatabase
     {
-        static void DisplayGreeting()
+        static List<Dinosaur> dinos = new List<Dinosaur>() { };
+        public static void ViewDinos(string orderBy)
         {
-            Console.WriteLine("*****************************************");
-            Console.WriteLine("🦕 Welcome to Jurassic Park 🦖");
-            Console.WriteLine("*****************************************");
-            Console.WriteLine();
-        }
-        static string PromptForString(string prompt)
-        {
-            Console.Write(prompt);
-            var userInput = Console.ReadLine();
-            return userInput;
-        }
-        static int PromptForInteger(string prompt)
-        {
-            Console.Write(prompt);
-            int userInput;
-            var isThisGoodInput = Int32.TryParse(Console.ReadLine(), out userInput);
-            if (isThisGoodInput)
+            if (dinos.Count == 0)
             {
-                return userInput;
+                Console.WriteLine("Who let the dinos out?!");
+                return;
+            }
+            if (orderBy == "Name")
+            {
+                dinos = dinos.OrderBy(dino => dino.Name).ToList<Dinosaur>();
             }
             else
+            if (orderBy == "Enclosure")
             {
-                Console.WriteLine("Sorry, but your input is invalid. Please try again.");
-                return 0;
+                dinos = dinos.OrderBy(dino => dino.EnclosureNumber).ToList<Dinosaur>();
             }
+
+            dinos.ForEach(dino => dino.Description());
+            Console.WriteLine("==============================================");
         }
-        // public string DinoDescription()//start of method
-        // {
-        //     // string description = Name + DietType + AcquisitionDate + Weight + EnclosureNumber;
-        //     //print out a description of the dinosaur to include all the properties. 
-        //     //Create an output format of your choosing. Feel free to be creative.
-        //     // return description;
-        // }
-        static void Main(string[] args)
+        public static Dinosaur Add(string diet, string name, int weight, int enclosureNumber)
         {
-            Console.Title = "ASCII Art";
-            string title = @"
-@@@QORBQ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Bmoy3hgQ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@Q. ',-;N88NB@@@QN&&Q&&&BQQ@@@@@@Q888NQ@@@@QOQ@@@@QbQ@@Q&BQ@@@@@QQ@@@@@4 `;''::+X@@@@QN888NQ@@B000g&Q@@@0R%WQ@Q&@@@@
-@@@Q, +^ ,4 `~ D@@~`- 1 ~'',,'lQ@@Q''~,,'Q@@j.'`,FQF.'.,1, '-Q@Q3,-'=%@@@D `? ,''r''p@Q'-,', u@@;'^',_'r%@;`~ }@| ,_}@
-@@@@; ;^ ~8-'> U@@;-~-j = ;~`~:'b@m ;  ~ XQ= ;~ =U; ;~ =K= +:QQ;`;~'LH@@@&``= \Q? L.'&X ^` ~'r@@;~r;r`~;`j*`> jj +,,R@
-@@@@| ~^ ^Q:`+ X@@;.~:G r S@j >,'&^,,~L`'*d `> )@X '= F@@l ;;Q:'+`}@@@@@@Q' ^ z@@~~* C+'~,J`~`8@;,;z@k ^^`^ + '`^'?Q@@
-@@@@J :^ +@;`^ $@@^`~;X ^ VQ= *-;H`~ jN.;'Bl ;,-XQ? ;',R@x ;;j +`i@@@@@@@Q' ^ v@Q:;r i-;`1Q,~.F@;,;lQ+ =,~L = `>`LQ0bD
-@@@@y '^ =@;`; R@@;`:^U ; -`,;~sQ?:~'RB;;-j@R,'^ ^QU.,~ 11 ~;l ^ }@@@@@@@Q' + LX:-> :?'; m0>`;,Q;~;``,;_tQt |~:,~'R@@@
-@@@@V .; *@; ;`&@@~`:^U *,''*';QW.?~''''>^;Q@m |' k@i | .* ;;P ;,,Q@@@@@@Q' =  .~~ ;O,?;'''',L`j;~i''r;-N@s c`~',;'K@@
-@@@@} .^ *@; ^`_r+'~~^X r ;^ +`l|,; ;>+~ ? aV'~; )gi.+,`wL`^,Ql ~;-vN@@@@&``c'''~zN@F'* ;\i*`~~,,;r,t ^,;Qz | 1B:'>`s@
-X*L?- ~; |@V'`:~,'-`,;X + >Q;._  +.:Q@@Q |'  ,,.oj` ~`~R@r ;-Q@j.-;. ?Q@@R .? ;Q@@@Q~r,`%@@@;`=  ;;~QF`; )L ; v@W''~`V
-y `::~- `O@@@QPi|kv*lU8iLLP@QJzFiiiU@@@Q^=+*p1CQ@@QhLA@@@jclFQ@@@pizN@@@@X .^ +@@@@Bzll3@@@@S*|?L11a@@GL}KK}CCO@@B{DQ@
-0=;~~~;l8@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@b+=>>y@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                               
-                                                                 ";
-
-            Console.WriteLine(title);
-            Console.Read();
-            Console.Clear();
-            var dinosaurs = new List<Dinosaur>();
-            var dinosour = new Dinosaur();
-            // var dinoDescription = DinoDescription();
-
-            DisplayGreeting();
-
-            //should we keep displaying the menu?
-            var keepWorking = true;
-            //while the user hasn't quit
-            while (keepWorking)
-            {
-                Console.WriteLine();
-                Console.WriteLine("What do you want to do? \n🔍(V)iew the summary of a 🦕, \n➕(A)dd a 🦕\n🗑 (R)emove a 🦕\n𝌡 (T)ransfer a 🦕\n🛑(Q)uit\n: ");
-                var option = Console.ReadLine().ToUpper();
-                if (option == "V")
-                {
-                    // READ(out of CREATE -READ - UPDATE - DELETE)
-                    foreach (var dinosaur in dinosaurs)
-                    {
-                        Console.WriteLine($"{dinosaur.Name} is in enclosure {dinosaur.EnclosureNumber} and it was acquired on {dinosaur.AcquisitionDate}; it is a {dinosaur.DietType} dinosaur and weights {dinosaur.Weight} pounds.");
-                    }
-                }
-                else
-                if (option == "R")
-                {
-                    // Get the dinosaur name we are searchign for
-                    var nameOfDinoToSearchFor = PromptForString("What's the dino's name you looking for? ");
-                    // Search the dinosaur database to see if it exist!
-                    Dinosaur foundDino = dinosaurs.FirstOrDefault(dinosaur => dinosaur.Name == nameOfDinoToSearchFor);
-                    // If we found a dinosaur
-                    if (foundDino != null)
-                    {
-                        //  - We did find the dinosaur
-                        //  - Show the details for the dinosaur
-                        {
-                            Console.WriteLine($"{foundDino.Name} is in enclosure {foundDino.EnclosureNumber} and was acquired on {foundDino.AcquisitionDate}; it is a{foundDino.DietType} dinosaur and weights {foundDino.Weight} pounds.");
-                        }
-                        //  - Ask to confirm "Are you sure you want to delete the dinosaur name specified?"
-                        var confirm = PromptForString($"Are you sure you want to delete {foundDino.Name}? [Y/N] ").ToUpper();
-                        //  - If they say no
-                        if (confirm == "N")
-                        {
-                            //    - do nothing
-                        }
-                        else
-                        {
-                            //  - If user say yes
-                            //    - Delete the dinosaur name specified
-                            dinosaurs.Remove(foundDino);
-                        }
-
-                    }
-                    else
-                    {
-                        //  Show that the person doesn't exist
-                        Console.WriteLine("No such dinosaur exists!");
-                    }
-                }//end of option Delete
-                else
-                if (option == "T")
-                {
-                    var nameOfDinoToTransfer = PromptForString("What's the dino's name you looking for? ");
-                    //find the dino
-                    Dinosaur foundDino = dinosaurs.FirstOrDefault(dinosaur => dinosaur.Name == nameOfDinoToTransfer);
-                    //find the enclosure number
-
-                    //if enclosure number exists, display and ask the user to comfirm if the do want to transfer the dino
-
-                    //if yes
-                    //  continue
-                    //if no
-                    //  do nothing
-                }
-                else
-                if (option == "Q")
-                {
-                    keepWorking = false;
-                }
-                else
-                {
-                    // Make a new dinosaur object
-                    var dinosaur = new Dinosaur();
-                    // Prompt for values and save them in the dinosaur's properties
-                    dinosaur.Name = PromptForString("What is the type of dinosaur? ");
-                    dinosaur.DietType = PromptForString("Is the dinosaur carnivore or herbivore? ");
-                    dinosaur.Weight = PromptForInteger("How heavy is the dinosaur (in pounds)? ");
-                    dinosaur.AcquisitionDate = DateTime.Now;
-                    dinosaur.EnclosureNumber = PromptForInteger("Specify the enclosure number where the dinosaur is/will be at? ");
-
-                    // Add the dinosaur to the list of dinosaurs
-                    dinosaurs.Add(dinosaur);
-                }
-            }// end of the `while` statement
-
+            Dinosaur newDino = new Dinosaur(diet, name, weight, enclosureNumber);
+            dinos.Add(newDino);
+            return newDino;
         }
     }
 }
